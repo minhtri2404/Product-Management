@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Product Management</title>
+    <link rel="stylesheet" href="style.css">    
+</head>
+<style>
+    
+</style>
+<body class="container">
+    <div id="app">
+        <h1 class="text-center my-4">Product Management</h1>
+
+        <!-- Form thêm/sửa sản phẩm -->
+        <div class="card mb-4">
+            <div class="card-body">
+                <div class="form-group">
+                    <label for="productName">Product Name</label>
+                    <input v-model.trim="product.name"  type="text" id="productName" class="form-control" placeholder="Enter product name">
+                </div>
+                <div class="form-group">
+                    <label for="productPrice">Product Price</label>
+                    <input v-model.trim="product.price" type="number" id="productPrice" class="form-control" placeholder="Enter product price">
+                </div>
+                <button class="btn btn-primary mt-3" @click="ThemSp">Thêm</button>
+                <button class="btn btn-primary mt-3 ml-2" @click="Update">Lưu</button>
+            </div>
+        </div>
+
+        <!-- Form tìm kiếm sản phẩm -->
+        <div class="input-group mb-4">
+            <input v-model="searchQuery"  type="text" class="form-control" placeholder="Search product by name">
+        </div>
+
+        <!-- Danh sách sản phẩm -->
+        <ul class="list-group">
+            <li v-for="(gt,index) in filteredProducts" :key="index" class="list-group-item d-flex justify-content-between align-items-center">
+                <div>
+                    <!-- dùng phép nội suy -->
+                    <strong>{{gt.name}}</strong> - {{gt.price}}
+                </div>
+                <div>
+                    <button class="btn btn-warning mr-2" @click="Edit(index)">Edit</button>
+                    <button class="btn btn-danger" @click="Xoa(index)" >Delete</button>
+                </div>
+            </li>
+        </ul>
+    </div>
+
+    <script src="https://unpkg.com/vue@3.0.0-beta.12/dist/vue.global.js"></script>
+    <script src="main.js"></script>
+</body>
+</html>
